@@ -1,0 +1,10 @@
+flask_cors
+flask 
+flask_sqlalchemy
+flask_bcrypt
+flask_session
+sqlalchemy
+config_session
+dotenv
+os
+redis
