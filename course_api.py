@@ -8,9 +8,9 @@ import logging
 app = Flask(__name__)
 CORS(app,supports_credentials=True)
 
-YOUTUBE_API_KEY = 'AIzaSyBEcQ-dbIdsDLFTA6l2RSe8CzHM-Z5P3nA'
-COURSERA_API_KEY = 'q4qQ0seJDIRAguAhhUw1sgSaTvwJK9GjnjaHYQv4Yp5YDjQD'
-access_token = 'C9Q95imXGUPaAc6VnZ4SaaTU7BGA'
+YOUTUBE_API_KEY = '<YOUR_YOUTUBE_API_KEY'
+COURSERA_API_KEY = '<YOUR_COURSERA_KEY>'
+access_token = '<YOUR_ACESS_TOKEN>'
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
 
