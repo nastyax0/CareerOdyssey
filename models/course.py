@@ -4,7 +4,7 @@ import json
 import os
 
 # Path to the database
-db_path = r'C:\Users\Akanksha\Desktop\CareerOdyssey\instance\courses.db'
+db_path = r'..<path to your db>\courses.db'
 
 def connect_to_db(db_path):
     try:
