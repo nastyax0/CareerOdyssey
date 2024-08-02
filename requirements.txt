@@ -8,3 +8,7 @@ config_session
 dotenv
 os
 redis
+requests
+bs4 
+sys
+json
