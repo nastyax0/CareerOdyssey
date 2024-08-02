@@ -16,8 +16,9 @@ sqlalchemy.orm
 google.generativeai
 config_session
 flask_cors
-from transformers 
+transformers 
 spacy
 json
 subprocess
 datetime
+
