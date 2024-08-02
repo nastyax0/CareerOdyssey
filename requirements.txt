@@ -12,3 +12,12 @@ requests
 bs4 
 sys
 json
+sqlalchemy.orm
+google.generativeai
+config_session
+flask_cors
+from transformers 
+spacy
+json
+subprocess
+datetime
