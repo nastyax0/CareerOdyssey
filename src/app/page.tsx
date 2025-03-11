@@ -75,8 +75,7 @@ export default function CareerChatbot() {
     },
   ]);
 
-  const [input, setInput] = useState<string>(""); // Explicitly define as string
-  const [preferences, setPreferences] = useState<string | null>(null);
+  const [input, setInput] = useState<string>("");
   const [currentBranch, setCurrentBranch] = useState<string | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -139,62 +138,6 @@ export default function CareerChatbot() {
       return () => clearInterval(interval);
     }
   }, [messages]);
-
-  const saveUserResponse = async (
-    userId: string,
-    question: string,
-    response: string
-  ): Promise<void> => {
-    const { data, error } = await supabase
-      .from("user_responses")
-      .insert([{ user_id: userId, question: question, response: response }]);
-
-    if (error) {
-      console.error("Error saving response:", error);
-    } else {
-      console.log("Response saved:", data);
-    }
-  };
-
-  const saveUserInteraction = async (
-    userId: string,
-    role: "user" | "bot",
-    message: string
-  ): Promise<void> => {
-    const { data, error } = await supabase
-      .from("user_interactions")
-      .insert([{ user_id: userId, message_role: role, message_text: message }]);
-
-    if (error) {
-      console.error("Error saving interaction:", error);
-    } else {
-      console.log("Interaction saved:", data);
-    }
-  };
-  const saveUserPreference = async (
-    userId: string,
-    preference: string
-  ): Promise<void> => {
-    const { data, error } = await supabase
-      .from("user_preferences")
-      .upsert([{ user_id: userId, preference: preference }]);
-
-    if (error) {
-      console.error("Error saving preference:", error);
-    } else {
-      console.log("Preference saved:", data);
-    }
-  };
-
-  const handleCareerSelection = (career: keyof typeof careerQuestions) => {
-    setCurrentBranch(career);
-    setStage("questions");
-    setMessages([
-      ...messages,
-      { role: "bot", text: `Great choice! ${careerQuestions[career][0]}` },
-    ]);
-    setQuestionIndex(1);
-  };
 
   const handleQuestionResponse = async (response: string) => {
     let botReply = "";

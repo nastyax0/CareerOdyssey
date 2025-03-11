@@ -18,7 +18,7 @@ export default function CareerReportPage() {
     return;
   }
 
-  const token = (await supabase.auth.getSession()).data.session?.access_token; // 🔥 Get access token
+  const token = (await supabase.auth.getSession()).data.session?.access_token; 
 
   setLoading(true);
   setError("");
@@ -28,7 +28,7 @@ export default function CareerReportPage() {
     const res = await fetch(`/api/reportmock`, {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${token}`, // 🔥 Send token
+        "Authorization": `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
@@ -40,7 +40,7 @@ export default function CareerReportPage() {
     } else {
       setReport(data.report);
     }
-  } catch (err) {
+  } catch {
     setError("Failed to fetch the report.");
   } finally {
     setLoading(false);
