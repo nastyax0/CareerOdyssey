@@ -76,7 +76,7 @@ export default function CareerChatbot() {
   ]);
 
   const [input, setInput] = useState<string>("");
-  const [currentBranch, setCurrentBranch] = useState<string | null>(null);
+  const [currentBranch] = useState<string | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [stage, setStage] = useState("initial");
@@ -91,7 +91,7 @@ export default function CareerChatbot() {
       if (error) {
         console.error("Error fetching user:", error.message);
       } else {
-        setUser(data.user); // Update state with user data
+        setUser(data.user);
       }
     };
 
