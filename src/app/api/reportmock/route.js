@@ -2,17 +2,8 @@ import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-
-  
-
-
 export async function GET(req) {
   try {
-    console.log("Checking ENV Vars in API Route...");
-  console.log("SUPABASE_URL:", process.env.SUPABASE_URL);
-  console.log("SUPABASE_ANON_KEY:", process.env.SUPABASE_ANON_KEY);
-
-  return NextResponse.json({ message: "API route is working!" }, { status: 200 });
     const authHeader = req.headers.get("authorization");
 
     if (!authHeader) {
