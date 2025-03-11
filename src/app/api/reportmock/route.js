@@ -20,7 +20,6 @@ export async function GET(req) {
     const userId = user.id;
     console.log("Authenticated User ID:", userId);
 
-  
     const { data: responses, error } = await supabase
       .from("user_responses")
       .select("*")
