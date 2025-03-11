@@ -18,15 +18,15 @@ export async function GET(req) {
     }
 
     const userId = user.id;
-    console.log("✅ Authenticated User ID:", userId);
+    console.log("Authenticated User ID:", userId);
 
-    // Fetch user responses
+  
     const { data: responses, error } = await supabase
       .from("user_responses")
       .select("*")
       .eq("user_id", userId);
 
-    console.log("📡 Supabase Query Result:", responses);
+    console.log("Supabase Query Result:", responses);
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });
@@ -36,7 +36,6 @@ export async function GET(req) {
       return NextResponse.json({ error: "No responses found." }, { status: 404 });
     }
 
-    // Initialize Gemini AI
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
