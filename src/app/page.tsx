@@ -97,7 +97,6 @@ export default function CareerChatbot() {
 
     fetchUser();
 
-    // Listen for auth state changes (e.g., login, logout)
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         setUser(session?.user || null);
@@ -139,6 +138,9 @@ export default function CareerChatbot() {
     }
   }, [messages]);
 
+  const generateReport = async () => {
+    router.push("/report");
+  };
   const handleQuestionResponse = async (response: string) => {
     let botReply = "";
 
@@ -147,10 +149,9 @@ export default function CareerChatbot() {
         botReply = careerQuestions[currentBranch!][questionIndex];
         setQuestionIndex(questionIndex + 1);
       } else {
-        // Instead of asking for a questionnaire, switch to AI-generated responses
         const userMessages = [...messages, { role: "user", text: response }];
         botReply = await getGeminiResponse(userMessages);
-        setStage("chat"); // Change stage to 'chat' to indicate AI responses now
+        setStage("chat");
       }
     } else {
       const userMessages = [...messages, { role: "user", text: response }];
@@ -261,12 +262,13 @@ export default function CareerChatbot() {
             ))}
           </div>
 
+          {/* Chat input area */}
           <div className="flex gap-2 items-center border-t border-[#bcb8b6] pt-4">
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Type your response..."
-              className="bg-[#f8f7f4] text-[#54504a] border-[#bcb8b6] focus:ring-[#7d7d7d] rounded-xl px-4 py-2"
+              className="bg-[#f8f7f4] text-[#54504a] border-[#bcb8b6] focus:ring-[#7d7d7d] rounded-xl px-4 py-2 w-full"
             />
             <Button
               onClick={sendMessage}
@@ -277,6 +279,15 @@ export default function CareerChatbot() {
           </div>
         </CardContent>
       </Card>
+
+      <div className="flex justify-center items-center w-full mt-4">
+        <Button
+          onClick={generateReport}
+          className="bg-[#54504a] text-white px-4 py-1 rounded-lg shadow-md hover:bg-[#C8BB96] transition"
+        >
+          Generate Report
+        </Button>
+      </div>
     </div>
   );
 }
